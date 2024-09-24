@@ -1,0 +1,35 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Latest photos" %}{% endblock %}
+{% block app_ss_title %}{% trans "Latest photos" %}{% endblock %}
+{% block content %}
+	<div class="w3-row">
+	    <div class="w3-col l12">
+	        <h1>{% trans "Latest photos" %}</h1>
+	    </div>
+	</div>
+	<div class="w3-row">
+	    <aside class="w3-col m2">
+	        <h4>{% trans "Filter by year" %}</h4>
+	        <ul>
+	            {% for date in date_list %}
+	            <li><a href="{% url 'photologue:pl-photo-archive-year' date.year %}" class="w3-button w3-dark-light">{{ date|date:"Y" }}</a></li>
+	            {% endfor %}
+	        </ul>
+	    </aside>
+	    <main class="w3-col m10 photo-list">
+	        {% if latest %}
+	        {% for photo in latest %}
+	        <a href="{{ photo.get_absolute_url }}">
+	            <img src="{{ photo.get_thumbnail_url }}" class="img-thumbnail" alt="{{ photo.title }}">
+	        </a>
+	        {% endfor %}
+	        {% else %}
+	        <p>{% trans "No photos were found" %}.</p>
+	        {% endif %}
+	    </main>
+	</div>
+{% endblock %}
+
+

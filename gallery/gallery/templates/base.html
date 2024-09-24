@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block navbar %}
+	<div class="w3-bar w3-dark-light">
+        <a href="/" class="w3-bar-item w3-button w3-large w3-wide w3-text-blue">
+           <b>{{ APP_TITLE }}</b><br>
+	       {#% block ss_title_bar %}<span class="w3-small w3-text-sand">{% block app_ss_title %}{{ APP_SUB_TITLE }}{% endblock %}</span>{% endblock %#}
+	    </a>
+	    {% block menubar %}
+           {% block menubar-left %}{% include "menu-left.html" %}{% endblock %}
+           {#% block menubar-right %}{% include "menu-right.html" %}{% endblock %#}
+	    {% endblock  %}
+	</div>
+{% endblock %}
+{% block main-content %}
+    <div class="w3-container">
+    {% block content %}{% endblock %}
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include "app.inc/footer.html" %}
+{% endblock  %}

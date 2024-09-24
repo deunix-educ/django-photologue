@@ -1,0 +1,9 @@
+#
+django
+pillow
+python-decouple
+django-axes[ipware]
+django-resized
+django-sortedm2m
+ExifRead
+gunicorn

@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="gallery-sample">
+    <h3><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h3>
+
+    <div class="w3-text-grey w3-small">{% trans "Published" %} {{ gallery.date_added }}</div>
+    {% if gallery.description %}<div>{{ gallery.description|safe }}</div>{% endif %}
+    {% for photo in gallery.sample %}
+    <a href="{{ photo.get_absolute_url }}">
+        <img src="{{ photo.get_thumbnail_url }}" class="img-thumbnail" alt="{{ photo.title }}">
+    </a>
+    {% endfor %}
+</div>

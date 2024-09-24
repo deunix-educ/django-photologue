@@ -1,0 +1,17 @@
+{% load i18n %}
+{% if not request.user.is_anonymous and request.user.is_active or request.user.is_superuser %}
+<div class="w3-dropdown-hover w3-right">
+    <button class="w3-button "><i class="fas fa-user-cog w3-text-amber"></i> <span>{{ request.user }}&nbsp; &#9776;</span></button>
+    <div class="w3-dropdown-content w3-bar-block w3-border w3-dark-medium" style="right:.1em;">
+        {% if request.user.is_staff %}
+        <a href="/admin/" class="w3-bar-item w3-button"><i class="fas fa-database w3-text-orange"></i> Base de données</a>
+        <a href="/admin/photologue/photo/" class="w3-bar-item w3-button"><i class="fas fa-images w3-text-blue"></i> Accès photographies</a>
+        {% endif %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="w3-bar-item w3-button" type="submit"><i class="fas fa-sign-out-alt w3-text-red"></i> Déconnexion</button>
+        </form>
+
+    </div>
+</div>
+{% endif %}

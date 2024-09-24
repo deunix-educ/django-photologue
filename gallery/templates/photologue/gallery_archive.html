@@ -1,0 +1,32 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Latest photo galleries" %}{% endblock %}
+{% block app_ss_title %}{% trans "Latest photo galleries" %}{% endblock %}
+
+{% block content %}
+	<div class="w3-row">
+	    <div class="w3-col l12">
+	        <h2 class="w3-border-bottom">{% trans "Latest photo galleries" %}</h2>
+	    </div>
+	</div>
+	<div class="w3-row">
+	    <aside class="w3-col l2">
+	        <h4>{% trans "Filter by year" %}</h4>
+	        <ul>
+	            {% for date in date_list %}
+	            <li><a href="{% url 'photologue:pl-gallery-archive-year' date.year %}" class="w3-button w3-dark-light">{{ date|date:"Y" }}</a></li>
+	            {% endfor %}
+	        </ul>
+	    </aside>
+	    <main class="w3-col l10">
+	        {% if latest %}
+	        {% for gallery in latest %}
+	        {% include "photologue/includes/gallery_sample.html" %}
+	        {% endfor %}
+	        {% else %}
+	        <p>{% trans "No galleries were found" %}.</p>
+	        {% endif %}
+	    </main>
+	</div>
+{% endblock %}

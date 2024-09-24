@@ -1,0 +1,29 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "All galleries" %}{% endblock %}
+{% block app_ss_title %}{% trans "All galleries" %}{% endblock %}
+
+{% block content %}
+	<div class="w3-row">
+	    <div class="w3-col l12">
+	        <h1>{% trans "All galleries" %}</h1>
+	    </div>
+	</div>
+	{% if object_list %}
+	{% for gallery in object_list %}
+	<div class="w3-row">
+	    <div class="w3-col l12">
+	        {% include "photologue/includes/gallery_sample.html" %}
+	    </div>
+	</div>
+	{% endfor %}
+	{% else %}
+	<div class="w3-row">
+	    <div class="w3-col l12">{% trans "No galleries were found" %}.</div>
+	</div>
+	{% endif %}
+
+	{% include "photologue/includes/paginator.html" %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load i18n %}
+{% if not request.user.is_anonymous and request.user.is_active %}
+	<div class="w3-dropdown-hover">
+	    <button class="w3-button w3-dark-plus"><i class="fa-solid fa-eye w3-text-amber"></i> Toutes les vues</button>
+	    <div class="w3-dropdown-content w3-bar-block w3-border w3-dark-light">
+	        <div class="w3-bar-item w3-dark-plus"><i class="fa-solid fa-images w3-text-lime fa-2x"></i> Toutes les Galeries</div>
+	        <a href="{% url 'photologue:pl-gallery-archive' %}" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa-solid fa-clock w3-text-teal"></i> Vues par date</a>
+	        <a href="{% url 'photologue:gallery-list' %}" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa-solid fa-list w3-text-blue"></i> Vues en mode liste</a>
+
+            <div class="w3-bar-item w3-dark-plus"><i class="fa-regular fa-id-card w3-text-lime fa-2x"></i> Toutes les Photographies</div>
+            <a href="{% url 'photologue:pl-photo-archive' %}" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa-solid fa-clock w3-text-teal"></i> Vues par date</a>
+            <a href="{% url 'photologue:photo-list' %}" class="w3-bar-item w3-button">&nbsp;&nbsp;<i class="fa-solid fa-list w3-text-blue"></i> Vues en mode liste</a>
+	    </div>
+	</div>
+	<div class="w3-dropdown-hover">
+	    <button class="w3-button  w3-dark-plus"><i class="fas fa-user-cog w3-text-amber"></i> <span>{{ request.user }}</span></button>
+	    <div class="w3-dropdown-content w3-bar-block w3-border w3-dark-light">
+	        {% if request.user.is_superuser %}
+	        <a href="/admin/" class="w3-bar-item w3-button"><i class="fas fa-database w3-text-orange"></i> Database</a>
+	        {% endif %}
+	        {% if request.user.is_staff or request.user.is_superuser %}
+	        <a href="/admin/photologue/photo/" class="w3-bar-item w3-button"><i class="fas fa-images w3-text-blue"></i> Photographies</a>
+	        {% endif %}
+
+	        <form method="post" action="{% url 'logout' %}">
+	            {% csrf_token %}
+	            <button class="w3-bar-item w3-button" type="submit"><i class="fas fa-sign-out-alt w3-text-red"></i> Déconnexion</button>
+	        </form>
+	    </div>
+	</div>
+{% endif %}

@@ -1,0 +1,40 @@
+{% load i18n %}
+{% get_current_language as language_code %}
+<!DOCTYPE html>
+<html lang="{{ language_code|default:'fr_FR' }}">
+    <head>
+        <title>{% block title %}Django Automation{% endblock %}</title>
+        <meta name="robots" content="{% block robots %}{% endblock %}" />
+        <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+        <meta name="description" content="{% block description %}{% endblock %}" />
+        <meta name="author" content="{% block author %}Auteur{% endblock %}">
+        <!--meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"-->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link href="/static/img/logo.png" rel="shortcut icon">
+		{% block styles %}
+		<link href="/static/css/w3.css" rel="stylesheet">
+		<link href="/static/css/all.min.css" rel="stylesheet">
+		<link href="/static/css/w3-custom.css" rel="stylesheet">
+		<link href="/static/css/styles.css" rel="stylesheet">
+		{% endblock %}
+        {% block js_header %}
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/w3-custom.js"></script>
+        {% endblock %}
+    </head>
+    <body class="w3-black w3-no-margin">
+        {% block main_layout %}
+	        {% block navbar %}{% endblock  %}
+	        <div id="topsite" style="max-width:1600px">
+	            {% block header %}{% endblock  %}
+	            {% block alert %}{% include 'app.inc/alert.html' %}{% endblock  %}
+	            {% block main-content %}{% endblock %}
+	        </div>
+		    {% block footer %}{% endblock  %}
+	        {% block js_footer %}{% endblock %}
+        {% endblock %}
+    </body>
+</html>
