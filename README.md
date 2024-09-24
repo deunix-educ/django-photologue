@@ -2,7 +2,8 @@
 This is a fork of django application [django-photoloque](https://github.com/richardbarran/django-photologue) 
 a powerful image management and gallery application
 
-Added django-resized and django-axes
+Added django-resized and django-axes<br>
+w3.css as css styles. 
 
 ## Installation
 

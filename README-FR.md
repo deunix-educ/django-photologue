@@ -3,6 +3,7 @@ Il s'agit d'un fork de l'application Django [django-photoloque](https://github.c
 une puissante application de gestion d'images et de galerie
 
 Ajout de django-resized et django-axes
+w3.css comme feuille de style css.
 
 ## Installation
 
